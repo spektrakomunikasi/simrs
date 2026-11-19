@@ -1,0 +1,6 @@
+<div class="heading"><div><span class="eyebrow">REKAM IDENTITAS</span><h1><?= e($patient->full_name) ?></h1><p class="mono"><?= e($patient->medical_record_no) ?></p></div><a href="<?= site_url('patients') ?>" class="btn">Kembali</a></div>
+<div class="panel"><div class="detail-grid"><div><small>NIK</small><strong><?= e($patient->national_id?:'-') ?></strong></div><div><small>Lahir</small><strong><?= date_indo($patient->birth_date) ?></strong></div>
+<div><small>Telepon</small><strong><?= e($patient->phone?:'-') ?></strong></div><div><small>Alamat</small><strong><?= e($patient->address?:'-') ?></strong></div></div></div>
+<div class="panel"><h2>Riwayat kunjungan fasilitas ini</h2><div class="table-wrap"><table><thead><tr><th>Tanggal</th><th>Dokter</th><th>No. antrean</th><th>Status</th><th></th></tr></thead><tbody>
+<?php foreach ($visits as $v): ?><tr><td><?= date_indo($v->visit_date) ?></td><td><?= e($v->doctor_name) ?></td><td><?= (int)$v->queue_number ?></td><td><?= e($v->status) ?></td><td><a href="<?= site_url('visits/show/'.$v->id) ?>">Detail</a></td></tr><?php endforeach; ?>
+<?php if (!$visits): ?><tr><td colspan="5" class="empty">Belum ada kunjungan.</td></tr><?php endif; ?></tbody></table></div></div>
